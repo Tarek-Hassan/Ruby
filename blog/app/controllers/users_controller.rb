@@ -4,11 +4,16 @@ class UsersController < ApplicationController
   end
   def login
     @user=User.find_user_by(user_params)
+
     if @user != nil
       redirect_to articles_path
     else
       render 'register'
     end
+  end
+  
+  def new 
+    @user=User.new
   end
 
   def create
