@@ -1,14 +1,15 @@
 Rails.application.routes.draw do
-  # get 'test1/index'
-  # get 'test1/new'
-  # get 'test1/show'
-  # get 'test1/create'
-  # get 'test1/update'
-  # get 'test1/edit'
-  # get 'test1/destroy'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  
-  get 'welcome/index'
+ 
+
+  devise_for :users
+  # authenticated :user do
+  #   root :to => 'articles#index', as: :authenticated_root
+  # end
+  root 'welcome#index'
+  resources :users do
+    resources :articles
+  end
+  # get 'welcome/index'
   # get 'singup'
 # root 'users#register'
 # get '/register', to: 'users#register'

@@ -1,10 +1,8 @@
 class User < ApplicationRecord
-    validates :email,:name,uniqueness:true,presence:true
-  
-    before_save :format_email_username
-
-
-def self.find_user_by(value)
-    where(["name = :value OR email = :value", {value: value}]).first
-  end
+  has_many :articles
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
 end
+ 
